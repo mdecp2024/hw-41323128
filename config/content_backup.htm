@@ -89,20 +89,36 @@ favorite_food = input("What is your favorite food? ")  # 提示使用者輸入�
 print("Hi! My name is " + name)  # 顯示名字
 print("My favorite food is " + favorite_food)  # 顯示最喜歡的食物
 print(name + "'s favorite food is " + favorite_food)  # 顯示完整句子</pre>
-<p><span></span></p><h3>w13_hw</h3>
-<p>&lt;!-- 導入 brython 程式庫 -- &gt;</p>
+<p><span></span><span>第三題:list_if_in_else</span></p>
+<p><span>範例:<a href="https://mdecp2024.github.io/hw-41323128/content/Brython.html?src=https://gist.githubusercontent.com/41323128/e041279701d8365d136fd1231f2fc5e5/raw/9ec8dfe3850a16374efe87cd859f195c4632beae/hw5.py">購買書籍</a></span></p>
+<p><span>說明:程式碼會顯示一個書籍清單，然後詢問使用者想購買的書籍。如果使用者選擇的書籍在清單中，程式會顯示「有售」，否則顯示「無售」。</span></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">programming_books = ["Learn python", "Python for all", "Intro to python"]  # 定義書籍清單
+print(programming_books)  # 顯示可選擇的書籍
+ 
+wanted_book = input("Hi! What book would you like to buy?")  # 提示使用者輸入想購買的書籍名稱
+print(wanted_book)  # 顯示使用者輸入的書籍名稱
+ 
+# 判斷書籍是否在可購買清單中
+if wanted_book in programming_books:
+    print("Yes, we sell it!")  # 書籍在清單中，顯示有售
+else:
+    print("Sorry, we don't sell that book")  # 書籍不在清單中，顯示無售</pre>
+<p></p><h3>w13_hw</h3>
+<p>w13上課題目:</p>
+<!-- 導入 brython 程式庫 -->
+<p>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
-<p>&lt;!-- 啟動 Brython -- &gt;</p>
+</p>
+<p>
 <script>
 window.onload=function(){
-brython({debug:1, pythonpath:['/static/','./ .. /downloads/py/']});
+brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
 }
 </script>
-<p>&lt;!-- 畫布定位點 -- &gt;</p>
+</p>
 <div id="brython_div1"></div>
-<p>&lt;!-- 利用 Brython 繪圖 -- &gt;</p>
-<script type="text/python">
+<script type="text/python3">
 from browser import html
 from browser import document as doc
 
@@ -127,6 +143,7 @@ ctx.beginPath()
 ctx.moveTo(100, 100)  # 起點為第一個矩形的左上角 (100, 100)
 ctx.lineTo(300, 300)  # 終點為第一個矩形的右下角 (300, 300)
 ctx.stroke()
+
 # 3. 繪製兩個外切圓 (黑色)
 ctx.strokeStyle = 'black'  # 設定圓的顏色為黑色
 
@@ -139,7 +156,129 @@ ctx.stroke()
 ctx.beginPath()
 ctx.arc(300, 300, 141.4, 0, 2 * 3.14)  # 圓心在(300, 300)，半徑為141.4
 ctx.stroke()
-</script><h1>HW 2</h1>
+</script>
+<p>w13<a href="https://mdecp2024.github.io/hw-41323128/content/Brython.html?src=https://gist.githubusercontent.com/41323128/82e1fa4d1f3a9f6cec9400deccc1a69b/raw/4a2b5e65bf05f2834d4cbdb7207ec60272802522/hw1.py">作業</a>:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 建立 canvas 元素
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 定義圓心和半徑
+x1, y1 = 200, 200  # 第一個圓的圓心
+x2, y2 = 300, 300  # 第二個圓的圓心
+radius = 141.4  # 圓的半徑
+
+ctx = canvas.getContext("2d")
+
+# === 繪製第一個圓 ===
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "black"
+ctx.fill()
+
+# === 繪製重疊區域 (黑色交集區塊) ===
+ctx.save()  # 保存繪圖狀態
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.clip()  # 限制繪圖範圍為第一個圓
+
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "black"
+ctx.fill()
+ctx.restore()  # 恢復繪圖狀態
+
+# === 填充第一個圓其他區域 ===
+# 填充左半部分 (黃色)
+ctx.beginPath()
+ctx.moveTo(x1, y1)
+ctx.arc(x1, y1, radius, 3.14159, 3.14159 * 1.5, False)
+ctx.closePath()
+ctx.fillStyle = "yellow"
+ctx.fill()
+
+# 填充上半部分 (橙色)
+ctx.beginPath()
+ctx.moveTo(x1, y1)
+ctx.arc(x1, y1, radius, 3.14159 * 1.5, 0, False)
+ctx.closePath()
+ctx.fillStyle = "orange"
+ctx.fill()
+
+# 填充左下部分 (綠色)
+ctx.beginPath()
+ctx.moveTo(x1, y1)
+ctx.arc(x1, y1, radius, 3.14159 * 0.5, 3.14159, False)
+ctx.closePath()
+ctx.fillStyle = "green"
+ctx.fill()
+
+# === 填充第二個圓區域 ===
+
+# 填充右上部分 (紫色)
+ctx.beginPath()
+ctx.moveTo(x2, y2)
+ctx.arc(x2, y2, radius, 3.14159 * 1.5, 0, False)
+ctx.closePath()
+ctx.fillStyle = "purple"
+ctx.fill()
+
+# 填充右下部分 (粉紅色)
+ctx.beginPath()
+ctx.moveTo(x2, y2)
+ctx.arc(x2, y2, radius, 0, 3.14159 * 0.5, False)
+ctx.closePath()
+ctx.fillStyle = "pink"
+ctx.fill()
+
+# 填充下半部分 (藍色)
+ctx.beginPath()
+ctx.moveTo(x2, y2)
+ctx.arc(x2, y2, radius, 3.14159 * 0.5, 3.14159, False)
+ctx.closePath()
+ctx.fillStyle = "blue"
+ctx.fill()
+
+# === 繪製輔助框架與對角線 ===
+# 繪製兩個圓的邊框
+ctx.lineWidth = 2
+ctx.strokeStyle = "black"
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.stroke()
+
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.stroke()
+
+# 繪製正方形框架
+ctx.lineWidth = 2
+ctx.strokeStyle = "red"
+
+# 第一個正方形
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200)
+ctx.stroke()
+ctx.fillStyle = "green"  # 填充顏色
+ctx.fill()
+# 第二個正方形
+ctx.beginPath()
+ctx.rect(200, 200, 200, 200)
+ctx.stroke()
+ctx.fillStyle = "blue"  # 填充顏色
+ctx.fill()
+# 繪製對角線
+ctx.lineWidth = 2
+ctx.strokeStyle = "red"
+ctx.beginPath()
+ctx.moveTo(100, 100)
+ctx.lineTo(300, 300)
+ctx.stroke()</pre>
+<p></p>
+<p>w13作業心得:</p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
 <hr/>
