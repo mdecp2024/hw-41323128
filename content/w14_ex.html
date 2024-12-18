@@ -142,7 +142,92 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">w13_hw << <a href='w13_hw.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w14_ex</h1>
-<p>請根據兩個圓繪圖所圍成的區域(目前圍成三個區域, 但若圓心移動可能彼此獨立)進行不同顏色著色, 條件是當各圓半徑與圓心座標變動時, 程式只需輸入兩個圓的圓心座標與半徑, 就可以完成各區域的著色任務. 參考範例 多個圓相交區域著色範例</p><br />w13_hw << <a href='w13_hw.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+<p>請根據兩個圓繪圖所圍成的區域(目前圍成三個區域, 但若圓心移動可能彼此獨立)進行不同顏色著色, 條件是當各圓半徑與圓心座標變動時, 程式只需輸入兩個圓的圓心座標與半徑, 就可以完成各區域的著色任務. 參考範例 多個圓相交區域著色範例</p>
+<p><a href="https://mdecp2024.github.io/hw-41323128/content/Brython.html?src=https://gist.githubusercontent.com/41323128/acb2fecdf2228f337704ebcd6b62238e/raw/5ec1c76851a636f1afc898acb9c73f64def27568/hw1.py">作業</a>:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import random
+import math
+
+# 定義一個函式來初始化畫布
+def initialize_canvas(canvas_width=400, canvas_height=400, id="brython_div1"):
+    """
+    初始化畫布，創建一個指定大小的 Canvas 元素，並將其加到 HTML 文件中。
+    返回畫布元素和它的 2D 繪圖上下文。
+    """
+    canvas = html.CANVAS(width=canvas_width, height=canvas_height)
+    brython_div = doc[id]  # 獲取指定 id 的 div 元素
+    brython_div &lt;= canvas  # 將 canvas 插入到該 div 中
+    ctx = canvas.getContext("2d")
+    return canvas, ctx
+
+# 定義一個隨機顏色生成函式
+def random_color_generator():
+    r = random.randint(0, 255)  # 隨機生成紅色成分 (0-255)
+    g = random.randint(0, 255)  # 隨機生成綠色成分 (0-255)
+    b = random.randint(0, 255)  # 隨機生成藍色成分 (0-255)
+    return f"rgb({r}, {g}, {b})"  # 返回隨機顏色字符串
+
+# 判斷點是否在圓內
+def is_point_in_circle(px, py, cx, cy, r):
+    return (px - cx) ** 2 + (py - cy) ** 2 &lt;= r ** 2
+
+# 使用者設定的三個圓心座標和半徑，並進行掃描線填充
+def draw_three_circles(c1, c2, c3):
+    """
+    根據傳入的三個圓的參數繪製圓形並使用掃描線算法填充區域。
+    c1, c2, c3: 每個圓為 (x, y, r) 的元組
+    """
+    canvas, ctx = initialize_canvas(400, 400)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+    color_dict = {}
+    circles = [c1, c2, c3]
+
+    for py in range(0, canvas.height):
+        for px in range(0, canvas.width):
+            # 確定該像素點屬於哪些圓
+            region = tuple(is_point_in_circle(px, py, cx, cy, r) for cx, cy, r in circles)
+
+            if region not in color_dict:
+                color_dict[region] = random_color_generator()
+
+            current_color = color_dict[region]
+            ctx.fillStyle = current_color
+            ctx.fillRect(px, py, 1, 1)
+
+# 從使用者輸入獲取三個圓的參數
+def get_three_circles_input():
+    """
+    從使用者輸入獲取三個圓的參數。
+    返回包含三個圓參數的列表。
+    """
+    circles = []
+    for i in range(1, 4):
+        while True:
+            try:
+                input_data = input(f"請輸入第 {i} 個圓的圓心 (x, y) 和半徑 r，格式為 x,y,r: ")
+                x, y, r = map(int, input_data.split(","))
+                circles.append((x, y, r))
+                break
+            except ValueError:
+                print("輸入格式錯誤，請重新輸入。")
+    return circles
+
+# 主程式
+def main():
+    print("請輸入三個圓的參數來繪製。")
+    circles = get_three_circles_input()
+    if len(circles) == 3:
+        draw_three_circles(*circles)
+    else:
+        print("輸入的圓數量不足，程式結束。")
+
+# 呼叫主程式
+main()
+</pre>
+<p></p>
+<div id="immersive-translate-image-tools" style="all: initial;"></div><br />w13_hw << <a href='w13_hw.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
     <!-- footer -->
       <div class="container">
