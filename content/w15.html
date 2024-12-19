@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='W7.html'>W7</a><li><a href='W10.html'>W10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w13_hw.html'>w13_hw</a><li><a href='w14_ex.html'>w14_ex</a><li><a href='W15.html'>W15</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='W7.html'>W7</a><li><a href='W10.html'>W10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w13_hw.html'>w13_hw</a><li><a href='w14_ex.html'>w14_ex</a><li><a href='w15.html'>w15</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,8 +141,28 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w14_ex << <a href='w14_ex.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>W15</h1>
-<p>題目一: 請利用 Gist 與 Brython 程式環境, 在個人的課程網站中新增一個頁面, 標題為 w15, 以"從 1 累加到 100"作為 anchor 的連結標題, 使用者點擊該連結之後, 可從各自的 Brython 頁面執行程式.</p><br />w14_ex << <a href='w14_ex.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+    <div id="tipue_search_content">w14_ex << <a href='w14_ex.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w15</h1>
+<p><a href="https://mdecp2024.github.io/hw-41323128/content/Brython.html?src=https://gist.githubusercontent.com/41323128/7a36991a47a0953f178697595f5f561e/raw/bc85f23a83c7db868b2bc880175070dd312b2d74/hw1.py">題目一範例</a>:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">sum_result = 0  # 建立變數 sum_result，初始值設為 0，用於儲存總和
+i = 1  # 指定變數 i 的初始值為 1，作為計數器
+while i &lt;= 100:  # 使用 while 迴圈，條件為 i 小於或等於 100，執行累加操作
+    sum_result += i  # 將目前的 i 值加到 sum_result 中
+    i += 1  # 將 i 的值加 1，進行下一次的迴圈
+print(sum_result)  # 輸出最終的總和 sum_result</pre>
+<p><a href="https://mdecp2024.github.io/hw-41323128/content/Brython.html?src=https://gist.githubusercontent.com/41323128/4b8ab87a1b0436bf57af062fa30abd80/raw/dca1ee928c2ce88bc745563221852d7e3653fe8f/hw2.py">題目二範例</a>:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 運算程式
+def addto(start, end):   # 定義函數 addto，接受兩個參數 start 和 end
+    sum_result = 0       # 設定變數 sum_result，初始值為 0，用於儲存累加結果
+    i = start            # 設定變數 i 的初始值為 start，作為計數器
+    while i &lt;= end:      # 使用 while 迴圈，條件為 i 小於或等於 end
+        sum_result += i  # 將目前的 i 值加到 sum_result 中
+        i += 1           # 將 i 的值加 1，進行下一次的迴圈
+    return sum_result    # 終止函數運行並返回計算結果 sum_result
+     
+# 調用程式
+result = addto(1, 100)   # 調用函數 addto，設定起始值為 1，結束值為 100
+print(result)            # 列印函數返回的結果 result</pre>
+<p>題目三範例:</p><br />w14_ex << <a href='w14_ex.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
     <!-- footer -->
       <div class="container">
