@@ -386,7 +386,53 @@ def addto(start, end):   # 定義函數 addto，接受兩個參數 start 和 end
 # 調用程式
 result = addto(1, 100)   # 調用函數 addto，設定起始值為 1，結束值為 100
 print(result)            # 列印函數返回的結果 result</pre>
-<p>題目三範例:</p><h1>HW 2</h1>
+<p><a href="https://mdecp2024.github.io/hw-41323128/content/Brython.html?src=https://gist.githubusercontent.com/41323128/d8a9e29c6b6a9189e496912fbb3cc557/raw/028cd4b4a9a6fe4ee80ccf2512546c1158554030/hw3.py">題目三範例</a>:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def addto(start, end):
+    """
+    計算從 start 加到 end 的總和
+
+    Args:
+        start (int): 起始值
+        end (int): 結束值
+
+    Returns:
+        int: 從 start 到 end 的總和
+    """
+    sum_result = 0  # 建立變數 sum_result，初始值為 0
+    i = start  # 初始化 i，設為起始值
+    while i &lt;= end:  # 使用 while 迴圈，條件為 i 小於或等於結束值
+        sum_result += i  # 將 i 的值累加到 sum_result
+        i += 1  # 將 i 的值加 1，進行下一次的迴圈
+    return sum_result  # 返回最終的總和
+
+# 呼叫函式並輸出結果
+result = addto(1, 100)
+print(result)  # 輸出從 1 加到 100 的結果</pre>
+<p><a href="https://mdecp2024.github.io/hw-41323128/content/Brython.html?src=https://gist.githubusercontent.com/41323128/d8a9e29c6b6a9189e496912fbb3cc557/raw/07d7774b05fd2e8479e31a1f05fdb4719b69dfb4/hw4.py">第四題範例</a>:</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 運算程式
+def add_avoid_8(start, end):  
+    """
+    計算從 start 到 end 範圍內的總和，跳過包含數字 "8" 的整數
+
+    Args:
+        start (int): 起始值
+        end (int): 結束值
+
+    Returns:
+        int: 範圍內避開數字 "8" 的累加總和
+    """
+    sum_result = 0  # 設定變數 sum_result，初始值為 0，用於儲存累加結果
+    i = start       # 設定變數 i 的初始值為 start，作為計數器
+    while i &lt;= end:  # 使用 while 迴圈，條件為 i 小於或等於 end
+        if '8' not in str(i):  # 將數字 i 轉為字串，判斷是否不包含數字 "8"
+            sum_result += i  # 若不包含數字 "8"，將 i 加到 sum_result 中
+        i += 1  # 將 i 的值加 1，進行下一次的迴圈
+    return sum_result  # 終止函數運行並返回計算結果 sum_result
+
+# 調用程式
+result = add_avoid_8(1, 100)  # 設定起始值為 1，結束值為 100
+print(result)  # 列印從 1 到 100 的累加總和，避開包含數字 "8" 的數字</pre>
+<p></p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
 <hr/>
