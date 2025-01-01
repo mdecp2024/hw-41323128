@@ -568,6 +568,87 @@ ctx.rect(origin_x + (310 * pixel), origin_y + (40 * pixel), (60 * pixel), (20 * 
 ctx.fillStyle = "darkblue"
 ctx.fill()
 </script>
+</p>
+<h3>w16_exam2</h3>
+<p><a href="https://mdecp2024.github.io/hw-41323128/content/Brython.html?src=https://gist.githubusercontent.com/41323128/df15af3b65be694155e867d449dacc7e/raw/3a4b572e4157e8089c6d08534b37cc4ecb15eaf6/hw2.py">程式碼</a>:</p>
+<div id="brython_div1"></div>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+    brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+<script type="text/python3">
+from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+
+# 取得 canvas 的繪圖上下文
+ctx = canvas.getContext("2d")
+from browser import html
+from browser import document as doc
+
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+
+ctx = canvas.getContext("2d")
+
+# 畫線的工具函數，設定線條顏色和粗細，然後畫出一條直線
+def draw_line(x1, y1, x2, y2, line_width=2, stroke_style="black"):
+    ctx.lineWidth = line_width
+    ctx.strokeStyle = stroke_style
+    ctx.beginPath()
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.stroke()
+
+# 在藍線左邊第一條和上面第一條附近標記文字
+ctx.font = "20px Arial"
+ctx.fillStyle = "red"
+ctx.fillText("(31,28)", 31+ 120, 28+ 15)
+
+# 繪製藍色多條線條，左上角從(31, 28)開始
+blue_start_x = 31
+blue_start_y = 28
+
+def draw_blue_rectangles(x, y, scale):
+    # 外圍矩形
+    draw_line(x + 150 * scale, y + 40 * scale, x + 190 * scale, y + 40 * scale, stroke_style="blue")
+    draw_line(x + 210 * scale, y + 40 * scale, x + 250 * scale, y + 40 * scale, stroke_style="blue")
+    draw_line(x + 250 * scale, y + 40 * scale, x + 250 * scale, y + 140 * scale, stroke_style="blue")
+    draw_line(x + 250 * scale, y + 140 * scale, x + 210 * scale, y + 140 * scale, stroke_style="blue")
+    draw_line(x + 190 * scale, y + 140 * scale, x + 150 * scale, y + 140 * scale, stroke_style="blue")
+    draw_line(x + 150 * scale, y + 140 * scale, x + 150 * scale, y + 40 * scale, stroke_style="blue")
+
+    # 內部矩形
+    draw_line(x + 170 * scale, y + 60 * scale, x + 230 * scale, y + 60 * scale, stroke_style="blue")
+    draw_line(x + 230 * scale, y + 60 * scale, x + 230 * scale, y + 80 * scale, stroke_style="blue")
+    draw_line(x + 190 * scale, y + 60 * scale, x + 190 * scale, y + 80 * scale, stroke_style="blue")
+    draw_line(x + 190 * scale, y + 80 * scale, x + 150 * scale, y + 80 * scale, stroke_style="blue")
+    draw_line(x + 210 * scale, y + 80 * scale, x + 210 * scale, y + 100 * scale, stroke_style="blue")
+    draw_line(x + 210 * scale, y + 100 * scale, x + 230 * scale, y + 100 * scale, stroke_style="blue")
+    draw_line(x + 230 * scale, y + 100 * scale, x + 230 * scale, y + 140 * scale, stroke_style="blue")
+    draw_line(x + 190 * scale, y + 80 * scale, x + 170 * scale, y + 80 * scale, stroke_style="blue")
+    draw_line(x + 170 * scale, y + 120 * scale, x + 170 * scale, y + 100 * scale, stroke_style="blue")
+    draw_line(x + 170 * scale, y + 100 * scale, x + 210 * scale, y + 100 * scale, stroke_style="blue")
+    draw_line(x + 190 * scale, y + 140 * scale, x + 190 * scale, y + 120 * scale, stroke_style="blue")
+    draw_line(x + 190 * scale, y + 120 * scale, x + 210 * scale, y + 120 * scale, stroke_style="blue")
+blue_start_x = 31
+blue_start_y = 28
+scale = 1 # 你可以更改這個數字來調整縮放比例
+draw_blue_rectangles(blue_start_x, blue_start_y, scale)
+</script>
 </p><h1>HW 3</h1>
 <h4>主題: Python 的數字、演算法與迴圈 (20%)</h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 4 and Part 5</p>
