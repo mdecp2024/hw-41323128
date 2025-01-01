@@ -453,8 +453,122 @@ print(result)  # 列印從 1 到 100 的累加總和，避開包含數字 "8" �
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 2 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
 <h3>w16_exam1</h3>
 <p><a href="https://mdecp2024.github.io/hw-41323128/content/Brython.html?src=https://gist.githubusercontent.com/41323128/df15af3b65be694155e867d449dacc7e/raw/87cd8420ec39a8c04db1cbcec5b0f01601d4b357/hw1.py">程式碼</a>:</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="664" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/XJbr_4rl6Pk" title="國立虎尾科技大學機械設計工程系 - 計算機程式 - w16_exam1: 41323128" width="1112"></iframe></p>
 <p></p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="664" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/XJbr_4rl6Pk" title="國立虎尾科技大學機械設計工程系 - 計算機程式 - w16_exam1: 41323128" width="1112"></iframe></p><h1>HW 3</h1>
+<div id="brython_div1"></div>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+    brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+<script type="text/python3">
+from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+
+# 取得 canvas 的繪圖上下文
+ctx = canvas.getContext("2d")
+from browser import html
+from browser import document as doc
+from math import pi, sin, cos, sqrt
+ 
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=900, height=300)  # 調整畫布大小
+brython_div = doc["brython_div1"]  # 確保 HTML 中有 id="brython_div1" 的元素
+brython_div <= canvas
+ 
+ctx = canvas.getContext("2d")
+ctx.lineWidth = 2
+ctx.strokeStyle = 'black'
+ 
+# 原點座標
+origin_x, origin_y = 31, 28
+pixel = 2  # 設定單位為 2 像素
+ 
+# 繪製 x 軸
+ctx.beginPath()
+ctx.moveTo(0, origin_y)  # x 軸起點
+ctx.lineTo(canvas.width, origin_y)  # x 軸終點
+ctx.strokeStyle = "gray"
+ctx.stroke()
+ 
+# 繪製 y 軸
+ctx.beginPath()
+ctx.moveTo(origin_x, 0)  # y 軸起點
+ctx.lineTo(origin_x, canvas.height)  # y 軸終點
+ctx.strokeStyle = "gray"
+ctx.stroke()
+ 
+# 標示原點座標
+ctx.font = "12px Arial"
+ctx.fillStyle = "black"
+ctx.fillText(f"({origin_x}, {origin_y})", origin_x + 5, origin_y - 5)
+ 
+# 繪製橙色六邊形（保持不變）
+ctx.beginPath()
+for i in range(6):
+    angle = pi / 3 * i
+    x = origin_x + (40 * pixel) * cos(angle)  # 改變六邊形大小
+    y = origin_y + (40 * pixel) * sin(angle)
+    if i == 0:
+        ctx.moveTo(x + (50 * pixel), y + (50 * pixel))
+    else:
+        ctx.lineTo(x + (50 * pixel), y + (50 * pixel))
+ctx.closePath()
+ctx.fillStyle = "orange"
+ctx.fill()
+ 
+# 繪製綠色菱形（x 軸向左移 10）
+ctx.beginPath()
+ctx.moveTo(origin_x + (125 * pixel), origin_y + (15 * pixel))  # 菱形基準點
+ctx.lineTo(origin_x + (145 * pixel), origin_y + (50 * pixel))
+ctx.lineTo(origin_x + (125 * pixel), origin_y + (85 * pixel))
+ctx.lineTo(origin_x + (105 * pixel), origin_y + (50 * pixel))
+ctx.closePath()
+ctx.fillStyle = "green"
+ctx.fill()
+ 
+# 繪製藍色正三角形（菱形後，x 軸再向左移 20）
+triangle_side = 40  # 正三角形邊長
+height = (sqrt(3) / 2) * triangle_side  # 正三角形高度
+ctx.beginPath()
+ctx.moveTo(origin_x + (150 * pixel), origin_y + (50 * pixel))  # 頂點
+ctx.lineTo(origin_x + (150 * pixel) - (triangle_side / 2) * pixel, origin_y + (50 * pixel) + (height * pixel))  # 左下頂點
+ctx.lineTo(origin_x + (150 * pixel) + (triangle_side / 2) * pixel, origin_y + (50 * pixel) + (height * pixel))  # 右下頂點
+ctx.closePath()
+ctx.fillStyle = "blue"
+ctx.fill()
+ 
+# 繪製粉紅色圓形（菱形後，x 軸再向左移 20，這次再向左移 10）
+ctx.beginPath()
+ctx.arc(origin_x + (200 * pixel), origin_y + (50 * pixel), (20 * pixel), 0, 2 * pi)  # 圓形的中心點向左再移動 10
+ctx.fillStyle = "magenta"
+ctx.fill()
+ 
+# 繪製黃色正方形（菱形後，x 軸再向左移 20，這次再向左移 10）
+ctx.beginPath()
+ctx.rect(origin_x + (250 * pixel), origin_y + (30 * pixel), (40 * pixel), (40 * pixel))  # 正方形的左上角向左再移動 10
+ctx.fillStyle = "yellow"
+ctx.fill()
+ 
+# 繪製藍色矩形（菱形後，x 軸再向左移 20，這次再向左移 10）
+ctx.beginPath()
+ctx.rect(origin_x + (310 * pixel), origin_y + (40 * pixel), (60 * pixel), (20 * pixel))  # 矩形的左上角向左再移動 10
+ctx.fillStyle = "darkblue"
+ctx.fill()
+</script>
+</p><h1>HW 3</h1>
 <h4>主題: Python 的數字、演算法與迴圈 (20%)</h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 4 and Part 5</p>
 <p>完成上述流程整理後, 請將 HW3 自評分數輸入 cp2024 自評表單中.</p>
